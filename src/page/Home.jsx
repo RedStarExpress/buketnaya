@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../components/Header'
 import { styled } from 'styled-components'
 import Action from '../components/Action'
 import Buket from '../components/Buket'
