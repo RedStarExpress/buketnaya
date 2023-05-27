@@ -12,10 +12,28 @@ const GlobalStyle = createGlobalStyle`
         background-color: ${props => props.theme.colors.primaryBackground};
     }
 
-    .container {
-        width: 1440px;
-        margin: 0 auto;
-        padding: 0 165px;
+    @media(min-width: 1440px) {
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 165px;
+        }
+    }
+
+    @media(max-width: 1200px) {
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 64px;
+        }
+    }
+
+    @media(max-width: 768px) {
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
     }
 `;
 
