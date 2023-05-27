@@ -12,13 +12,11 @@ const GlobalStyle = createGlobalStyle`
         background-color: ${props => props.theme.colors.primaryBackground};
     }
 
-    @media(min-width: 1440px) {
         .container {
             max-width: 1440px;
             margin: 0 auto;
             padding: 0 165px;
         }
-    }
 
     @media(max-width: 1200px) {
         .container {

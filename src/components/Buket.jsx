@@ -1,36 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
+import axiosInstance from '../layout/config'
 
 function Buket() {
-  return (
-    <Wrapper>
-        <div className="container">
-            <div className="card">
-                <ul className='card-list'>
-                    <li className="card-item">
-                        <img src="./images/buket1.png" alt="" />
-                        <h3>Букеты</h3>
-                    </li>
+    const [data, setData] = useState([])
 
-                    <li className="card-item">
-                        <img src="./images/buket2.png" alt="" />
-                        <h3>Цветочные композиции</h3>
-                    </li>
+    useEffect(() => {
+        axiosInstance.get("/categoriya_base_all_views/")
+            .then((res) => {
+                console.log(res.data);
+                setData(res.data)
+            })
+    }, [])
 
-                    <li className="card-item">
-                        <img src="./images/buket3.png" alt="" />
-                        <h3>Живые цветы</h3>
-                    </li>
-
-                    <li className="card-item">
-                        <img src="./images/buket4.png" alt="" />
-                        <h3>Товары</h3>
-                    </li>
-                </ul>
+    return (
+        <Wrapper>
+            <div className="container">
+                <div className="card">
+                    <ul className='card-list'>
+                        {
+                            data?.length > 0 && data?.map((item) => {
+                                return (
+                                    <li className="card-item">
+                                        <img src="./images/buket1.png" alt="" />
+                                        <h3>Букеты</h3>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
-    </Wrapper>
-  )
+        </Wrapper>
+    )
 }
 
 export default Buket
@@ -46,11 +48,19 @@ const Wrapper = styled.section`
         .card-list {
             list-style: none;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(490px, 1fr));
+            justify-items: center;
             gap: 32px;
 
             .card-item{
+                width: 100%;
                 border: 2px solid ${props => props.theme.colors.whiteColor};
+
+                img {
+                    width: 100%;
+                    height: 395px;
+                    object-fit: cover;
+                }
 
                 h3 {
                     font-style: normal;

@@ -105,7 +105,7 @@ const Wrapper = styled.section`
         margin-bottom: 60px;
 
         .blog-item{
-            width: 350px;
+            width: 100%;
             background: #90AA91;
             box-shadow: 4px 4px 4px rgba(187, 187, 187, 0.25);
             border-radius: 5px;

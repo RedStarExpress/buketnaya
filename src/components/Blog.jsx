@@ -103,13 +103,14 @@ const Wrapper = styled.section`
         z-index: 1;
         list-style: none;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        justify-items: center;
         gap: 30px;
         margin-top: 40px;
         margin-bottom: 60px;
 
         .blog-item{
-            width: 350px;
+            width: 100%;
             background: #90AA91;
             box-shadow: 4px 4px 4px rgba(187, 187, 187, 0.25);
             border-radius: 5px;
