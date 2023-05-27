@@ -1,180 +1,70 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 import Button from './Button'
+import axiosInstance, { url } from '../layout/config'
 
 function BlogSection() {
+    const [data, setData] = useState([])
+    const [show, setShow] = useState(false)
+
+    useEffect(() => {
+        axiosInstance.get("/blogs_base_all_views/")
+            .then((res) => {
+                console.log(res.data?.results);
+                setData(res.data?.results)
+            })
+    }, [])
+
     return (
         <Wrapper>
             <div className="container">
                 <h2 className='title'>Блог</h2>
 
                 <ul className='blogs'>
-                    <li className="blog-item">
-                        <span className='date'>2022/22/8</span>
+                    {
+                        data?.length > 0 && data.map((item, index) => {
+                            return (
+                                (index < 6 || show) && (
+                                    <li className="blog-item" key={index}>
+                                        <span className='date'>{item.create_date?.substr(0, 10)}</span>
 
-                        <img src="./images/blog1.png" alt="" />
+                                        <img src={url + item.img} alt="" className='image' />
 
-                        <div className="info-title">
-                            <h3 className='title'>Название статьи</h3>
-                            <p className='text'>Текст </p>
-                        </div>
+                                        <div className="info-title">
+                                            <h3 className='title'>{item.title}</h3>
+                                            <p className='text'>{item.content}</p>
+                                        </div>
 
-                        <div className="blog-footer">
-                            <div className="info">
-                                <div className="hart">
-                                    <img src="./images/hart.svg" alt="" />
-                                    <span>15</span>
-                                </div>
+                                        <div className="blog-footer">
+                                            <div className="info">
+                                                <div className="hart">
+                                                    <img src="./images/hart.svg" alt="" />
+                                                    <span>{item.like}</span>
+                                                </div>
 
-                                <div className="eye">
-                                    <img src="./images/eye.svg" alt="" />
-                                    <span>2001</span>
-                                </div>
-                            </div>
+                                                <div className="eye">
+                                                    <img src="./images/eye.svg" alt="" />
+                                                    <span>{item.eye}</span>
+                                                </div>
+                                            </div>
 
-                            <Link to={"/blog/1"}>Читать</Link>
-                        </div>
-                    </li>
+                                            <Link to={"/blog/1"}>Читать</Link>
+                                        </div>
+                                    </li>
+                                )
 
-                    <li className="blog-item">
-                        <span className='date'>2022/22/8</span>
-
-                        <img src="./images/blog2.png" alt="" />
-
-                        <div className="info-title">
-                            <h3 className='title'>Название статьи</h3>
-                            <p className='text'>Текст </p>
-                        </div>
-
-                        <div className="blog-footer">
-                            <div className="info">
-                                <div className="hart">
-                                    <img src="./images/hart.svg" alt="" />
-                                    <span>15</span>
-                                </div>
-
-                                <div className="eye">
-                                    <img src="./images/eye.svg" alt="" />
-                                    <span>2001</span>
-                                </div>
-                            </div>
-
-                            <Link to={"/blog/1"}>Читать</Link>
-                        </div>
-                    </li>
-
-                    <li className="blog-item">
-                        <span className='date'>2022/22/8</span>
-
-                        <img src="./images/blog3.png" alt="" />
-
-                        <div className="info-title">
-                            <h3 className='title'>Название статьи</h3>
-                            <p className='text'>Текст </p>
-                        </div>
-
-                        <div className="blog-footer">
-                            <div className="info">
-                                <div className="hart">
-                                    <img src="./images/hart.svg" alt="" />
-                                    <span>15</span>
-                                </div>
-
-                                <div className="eye">
-                                    <img src="./images/eye.svg" alt="" />
-                                    <span>2001</span>
-                                </div>
-                            </div>
-
-                            <Link to={"/blog/1"}>Читать</Link>
-                        </div>
-                    </li>
-
-                    <li className="blog-item">
-                        <span className='date'>2022/22/8</span>
-
-                        <img src="./images/blog1.png" alt="" />
-
-                        <div className="info-title">
-                            <h3 className='title'>Название статьи</h3>
-                            <p className='text'>Текст </p>
-                        </div>
-
-                        <div className="blog-footer">
-                            <div className="info">
-                                <div className="hart">
-                                    <img src="./images/hart.svg" alt="" />
-                                    <span>15</span>
-                                </div>
-
-                                <div className="eye">
-                                    <img src="./images/eye.svg" alt="" />
-                                    <span>2001</span>
-                                </div>
-                            </div>
-
-                            <Link to={"/blog/1"}>Читать</Link>
-                        </div>
-                    </li>
-
-                    <li className="blog-item">
-                        <span className='date'>2022/22/8</span>
-
-                        <img src="./images/blog2.png" alt="" />
-
-                        <div className="info-title">
-                            <h3 className='title'>Название статьи</h3>
-                            <p className='text'>Текст </p>
-                        </div>
-
-                        <div className="blog-footer">
-                            <div className="info">
-                                <div className="hart">
-                                    <img src="./images/hart.svg" alt="" />
-                                    <span>15</span>
-                                </div>
-
-                                <div className="eye">
-                                    <img src="./images/eye.svg" alt="" />
-                                    <span>2001</span>
-                                </div>
-                            </div>
-
-                            <Link to={"/blog/1"}>Читать</Link>
-                        </div>
-                    </li>
-
-                    <li className="blog-item">
-                        <span className='date'>2022/22/8</span>
-
-                        <img src="./images/blog3.png" alt="" />
-
-                        <div className="info-title">
-                            <h3 className='title'>Название статьи</h3>
-                            <p className='text'>Текст </p>
-                        </div>
-
-                        <div className="blog-footer">
-                            <div className="info">
-                                <div className="hart">
-                                    <img src="./images/hart.svg" alt="" />
-                                    <span>15</span>
-                                </div>
-
-                                <div className="eye">
-                                    <img src="./images/eye.svg" alt="" />
-                                    <span>2001</span>
-                                </div>
-                            </div>
-
-                            <Link to={"/blog/1"}>Читать</Link>
-                        </div>
-                    </li>
+                            )
+                        })
+                    }
                 </ul>
 
                 <div className="btn" style={{ textAlign: "center" }}>
-                    <Button>Все статьи</Button>
+                    {
+                        <Button onClick={() => setShow(!show)}>
+                            {show ? "Cократить" : "Все статьи"}
+                        </Button>
+                    }
                 </div>
             </div>
         </Wrapper>
@@ -185,6 +75,14 @@ export default BlogSection
 
 const Wrapper = styled.section`
     padding: 80px 0;
+
+    .image {
+        display: flex;
+        justify-content: center;
+        height: 225px;
+        width: 100%;
+        object-fit: contain;
+    }
 
     .title {
         font-family: 'Cormorant';

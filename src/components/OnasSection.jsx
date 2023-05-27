@@ -6,8 +6,8 @@ function OnasSection() {
         <Wrapper>
             <div className="container">
                 <h3>О нас</h3>
-                <p>Компания “Цветочная мануфактура” начала свою работу <br />
-                    в 2020 году. Сегодня мы доставляем более 220 букетов ежедневно. <br />
+                <p className='pre'>Компания “Цветочная мануфактура” начала свою работу
+                    в 2020 году. Сегодня мы доставляем более 220 букетов ежедневно.
                     За всю нашу деятельность мы сделали чуточку счастливее более 300.000 человек.</p>
                 <img className='hero-img' src="./images/onas1.svg" alt="" />
                 <h3>Наша миссия</h3>
@@ -88,6 +88,14 @@ export default OnasSection
 
 const Wrapper = styled.section`
 margin-top: 80px;
+
+.pre {
+    font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 24px;
+color: #443926;
+}
     
 .hero-img {
     width: 1110px;
